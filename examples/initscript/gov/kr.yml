@@ -24,6 +24,10 @@ spec:
           volumeMounts:
             - name: install-init-script
               mountPath: /etc/kubernetes
+          env:
+            - name: STARTUP_SCRIPT
+              value: |
+                IyEvYmluL2Jhc2gKCmVjaG8ga3ViZXJuZXRlcyBzZXJ2aWNlCg==
       volumes:
         - name: install-init-script
           hostPath:
