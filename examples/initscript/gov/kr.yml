@@ -17,7 +17,7 @@ spec:
       hostPID: true
       containers:
         - name: init-script
-          image: io.private-ncr.gov-ntruss.com/nks/examples-installer:v0.0.2
+          image: io.private-ncr.gov-ntruss.com/nks/initscript-installer:v0.0.2
           imagePullPolicy: Always
           securityContext:
             privileged: true
