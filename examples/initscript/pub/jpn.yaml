@@ -1,0 +1,34 @@
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: init-script
+  namespace: kube-system
+  labels:
+    app: init-script
+spec:
+  selector:
+    matchLabels:
+      name: init-script
+  template:
+    metadata:
+      labels:
+        name: init-script
+    spec:
+      hostPID: true
+      containers:
+        - name: init-script
+          image: nks.jpn.private-ncr.naverncp.com/initscript-installer:v0.0.2
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: install-init-script
+              mountPath: /etc/kubernetes
+          env:
+            - name: STARTUP_SCRIPT
+              value: |
+                IyEvYmluL2Jhc2gKCmVjaG8ga3ViZXJuZXRlcyBzZXJ2aWNlCg==
+      volumes:
+        - name: install-init-script
+          hostPath:
+            path: /etc/kubernetes
